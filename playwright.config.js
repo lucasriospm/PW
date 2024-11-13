@@ -12,7 +12,7 @@ const config = defineConfig({
     video: "retain-on-failure",
     screenshot: 'retain-on-failure',
     outputDir: './test-results/',
-    headless: true,
+    headless: false,
     browserName: process.env.BROWSER_TYPE || 'chromium', // Default to Chromium
     actionTimeout: Number(process.env.ACTION_TIMEOUT) || 45000,
     //storageState: './sessions/SessionState.json',

@@ -17,7 +17,7 @@ test.only('test gifting flow', async ({ page }) => {
   await giftingPage.continue();
 
   // Llenar detalles de la tarjeta
-  await giftingPage.fillCardDetails('Lucas Emanuel Rivas Hernandez', '737');
+  await giftingPage.fillCardDetails('Lucas Emanuel Rivas Hernandez', '4111111111111111', '12/25', '737');
 
   // Seleccionar país
   await giftingPage.selectCountry();

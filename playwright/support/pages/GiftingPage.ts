@@ -1,4 +1,4 @@
-import { Page, FrameLocator } from '@playwright/test';
+import { Page } from '@playwright/test';
 import { giftingSelectors } from '../selectors/giftingSelectors';
 
 export class GiftingPage {
@@ -20,19 +20,27 @@ export class GiftingPage {
     await this.page.locator(giftingSelectors.continueAsGuestButton).click();
   }
 
-  async fillCardDetails(name: string, cvc: string) {
+  async fillCardDetails(name: string, cardNumber: string, expiryDate: string, cvc: string) {
     await this.page.locator(giftingSelectors.nameOnCard).fill(name);
 
-    const iframes = await this.page.locator(giftingSelectors.cvcIframe).elementHandles();
-    for (const iframe of iframes) {
-      const frame = await iframe.contentFrame();
-      if (frame) {
-        const cvcInput = await frame.locator(giftingSelectors.cvcInput);
-        if (await cvcInput.count() > 0) {
-          await cvcInput.fill(cvc);
-          break;
-        }
-      }
+    const cardIframe = await this.page.locator(giftingSelectors.cvcIframe).first();
+    await cardIframe.waitFor({ state: 'attached', timeout: 60000 });
+    const cardFrame = await cardIframe.contentFrame();
+
+    if (cardFrame) {
+      await cardFrame.locator(giftingSelectors.cardNumber).waitFor({ state: 'visible', timeout: 60000 });
+      await cardFrame.locator(giftingSelectors.cardNumber).fill(cardNumber);
+
+      // Utilizando el selector simplificado para fecha de vencimiento
+      const expiryDateField = cardFrame.locator(giftingSelectors.expiryDate);
+      await expiryDateField.waitFor({ state: 'visible', timeout: 60000 });
+      await expiryDateField.fill(expiryDate);
+
+      const cvcField = cardFrame.locator(giftingSelectors.cvcInput);
+      await cvcField.waitFor({ state: 'visible', timeout: 60000 });
+      await cvcField.fill(cvc);
+    } else {
+      throw new Error('No se pudo acceder al iframe del formulario de tarjeta');
     }
   }
 

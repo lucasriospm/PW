@@ -2,11 +2,12 @@ export const giftingSelectors = {
   membershipCard: 'div.giftingSelectMembershipstyled__CardsContainer-sc-rqvq4x-6.jWdLaJ > div:nth-child(1) > div.giftingSelectMembershipstyled__QuantityControlContainer-sc-rqvq4x-25.jIPLyV > div.giftingSelectMembershipstyled__QuantityButtonIconContainer-sc-rqvq4x-26.jbEvxi',
   quantityButton: 'div.giftingSelectMembershipstyled__QuantityControlContainer-sc-rqvq4x-25.jIPLyV > div.giftingSelectMembershipstyled__QuantityButtonIconContainer-sc-rqvq4x-26.jbEvxi',
   continueButton: 'button.giftingSelectMembershipstyled__ContinueButton-sc-rqvq4x-32.bcAzIf',
-  continueAsGuestButton: 'button.ant-btn.ant-btn-primary:has-text("Continue as a Guest")',
   nameOnCard: 'input[placeholder="Name on card"]',
+  cardIframe: 'iframe[title="Campo de entrada seguro del número de tarjeta"]',
+  expiryDateIframe: 'iframe[title="Campo de entrada seguro de la fecha de caducidad"]',
+  cvcIframe: 'iframe[title="Campo de entrada seguro de CVC"]',
   cardNumber: 'input[name="cardnumber"]',
-  expiryDate: 'input[name="exp-date"]', // Selector actualizado para fecha de vencimiento
-  cvcIframe: 'iframe[name^="__privateStripeFrame"]',
+  expiryDate: 'input[placeholder="MM / YY"]',
   cvcInput: 'input[placeholder="CVC"]',
   countrySelect: 'text=United States',
   streetAddress: 'input[placeholder="Street address"]',
@@ -14,9 +15,10 @@ export const giftingSelectors = {
   city: 'input[placeholder="City"]',
   state: '#state',
   zip: 'input[placeholder="Zip"]',
-  email: 'input[role="textbox"][name="Email"]',
+  email: '#email',
   purchaseButton: 'button:has-text("Purchase")',
   recipientDetailsButton: 'text=Continue to Recipient Details',
+  recipientForm: '#app > div > div.giftingRecipientDetailsstyled__Container-sc-1ne0dvx-0.fvUa-dA > form',
   recipientName: '[id^="\\30 _name"]',
   deliveryDate: '[id^="\\30 _deliveryDate"]',
   recipientEmail: '[id^="\\30 _email"]',
@@ -26,3 +28,4 @@ export const giftingSelectors = {
   sendButton: 'button:has-text("Send")',
   giftAnotherButton: 'text=Gift Another Membership'
 };
+
